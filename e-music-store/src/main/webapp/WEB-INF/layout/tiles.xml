@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<!-- HOME MODULE -->
+
+	<definition name="base" template="/WEB-INF/layout/page.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+	</definition>
+	
+	<definition name="home" extends="base">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="body" value="/WEB-INF/views/home/home.jsp" />
+	</definition>
+	
+	<definition name="products" extends="base">
+		<put-attribute name="title" value="Products" />
+		<put-attribute name="body" value="/WEB-INF/views/home/products.jsp" />
+	</definition>
+	
+	<definition name="product" extends="base">
+		<put-attribute name="title" value="Product" />
+		<put-attribute name="body" value="/WEB-INF/views/home/product.jsp" />
+	</definition>
+	
+	<definition name="login" extends="base">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="body" value="/WEB-INF/views/home/login.jsp" />
+	</definition>
+	
+	<definition name="about" extends="base">
+		<put-attribute name="title" value="About" />
+		<put-attribute name="body" value="/WEB-INF/views/home/about.jsp" />
+	</definition>
+	
+	<definition name="register" extends="base">
+		<put-attribute name="title" value="Register" />
+		<put-attribute name="body" value="/WEB-INF/views/home/register.jsp" />
+	</definition>
+	
+	<definition name="register_customer_success" extends="base">
+		<put-attribute name="title" value="Register" />
+		<put-attribute name="body" value="/WEB-INF/views/home/register_customer_success.jsp" />
+	</definition>
+	
+	<!-- ADMIN MODULE -->
+	
+	<definition name="admin_home" extends="base">
+		<put-attribute name="title" value="Admin Home" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_home.jsp" />
+	</definition>
+	
+	<definition name="add_product" extends="base">
+		<put-attribute name="title" value="Add Product" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/add_product.jsp" />
+	</definition>
+	
+	<definition name="product_inventory" extends="base">
+		<put-attribute name="title" value="Product Inventory" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/product_inventory.jsp" />
+	</definition>
+	
+	<definition name="edit_product" extends="base">
+		<put-attribute name="title" value="Edit Product" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/edit_product.jsp" />
+	</definition>
+	
+	<definition name="customer_management" extends="base">
+		<put-attribute name="title" value="Customer Management" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/customer_management.jsp" />
+	</definition>
+	
+	<!-- CUSTOMER MODULE -->
+	
+	<definition name="customer_home" extends="base">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="body" value="/WEB-INF/views/customer/customer_home.jsp" />
+	</definition>
+	
+	<definition name="customer_profile" extends="base">
+		<put-attribute name="title" value="Profile" />
+		<put-attribute name="body" value="/WEB-INF/views/customer/customer_profile.jsp" />
+	</definition>
+	
+	<definition name="cart" extends="base">
+		<put-attribute name="title" value="Cart" />
+		<put-attribute name="body" value="/WEB-INF/views/customer/cart.jsp" />
+	</definition>
+	
+	<!-- CHECKOUT MODULE -->
+	
+	<definition name="checkout_cancelled" extends="base">
+		<put-attribute name="title" value="Checkout" />
+		<put-attribute name="body" value="/WEB-INF/flows/checkout/checkout_cancelled.jsp" />
+	</definition>
+	
+	<definition name="collect_customer_info" extends="base">
+		<put-attribute name="title" value="Checkout" />
+		<put-attribute name="body" value="/WEB-INF/flows/checkout/collect_customer_info.jsp" />
+	</definition>
+	
+	<definition name="collect_shipping_detail" extends="base">
+		<put-attribute name="title" value="Checkout" />
+		<put-attribute name="body" value="/WEB-INF/flows/checkout/collect_shipping_detail.jsp" />
+	</definition>
+	
+	<definition name="invalid_cart_warning" extends="base">
+		<put-attribute name="title" value="Checkout" />
+		<put-attribute name="body" value="/WEB-INF/flows/checkout/invalid_cart_warning.jsp" />
+	</definition>
+	
+	<definition name="order_confirmation" extends="base">
+		<put-attribute name="title" value="Checkout" />
+		<put-attribute name="body" value="/WEB-INF/flows/checkout/order_confirmation.jsp" />
+	</definition>
+	
+	<definition name="thank_customer" extends="base">
+		<put-attribute name="title" value="Checkout" />
+		<put-attribute name="body" value="/WEB-INF/flows/checkout/thank_customer.jsp" />
+	</definition>
+	
+</tiles-definitions>
