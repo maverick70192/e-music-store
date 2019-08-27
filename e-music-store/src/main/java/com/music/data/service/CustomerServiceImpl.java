@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.music.data.repository.CustomerRepository;
 import com.music.model.Customer;
+import com.music.model.ForgotPassword;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -41,6 +42,21 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer getCustomerByUsername(String username) {
 		return customerRepository.getCustomerByUsername(username);
+	}
+
+	@Override
+	public void customerExist(ForgotPassword forgotPassword) {
+		customerRepository.customerExist(forgotPassword);
+	}
+
+	@Override
+	public void changePassword(ForgotPassword forgotPassword) {
+		customerRepository.changePassword(forgotPassword);
+	}
+
+	@Override
+	public void checkSecurityAnswer(ForgotPassword forgotPassword) {
+		customerRepository.checkSecurityAnswer(forgotPassword);
 	}
 
 }

@@ -13,9 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import com.music.data.service.UsersService;
 import com.music.model.Authorities;
 import com.music.model.Cart;
 import com.music.model.Customer;
+import com.music.model.ForgotPassword;
 import com.music.model.Users;
 
 @Repository
@@ -24,6 +26,8 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
+	@Autowired
+	private UsersService usersService;
 	
 	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(11);
 	
@@ -124,6 +128,62 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 		customer = session.createQuery(criteriaQuery).getSingleResult();
 		session.flush();
 		return customer;
+	}
+
+	@Override
+	public void customerExist(ForgotPassword forgotPassword) {
+		String username = forgotPassword.getUsername();
+		String email = forgotPassword.getEmail();
+		Customer customer = null;
+		Session session = currentSession();
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaQuery<Customer> criteriaQuery = builder.createQuery(Customer.class);
+		Root<Customer> root = criteriaQuery.from(Customer.class);
+		criteriaQuery.select(root).where(builder.equal(root.get("username"), username), builder.equal(root.get("email"), email));
+		customer = session.createQuery(criteriaQuery).getSingleResult();
+		session.flush();
+		if(customer == null) {
+			throw new RuntimeException();
+		}
+		else {
+			forgotPassword.setSecurityQuestion(customer.getSecurityQuestion());
+		}
+	}
+
+	@Override
+	public void changePassword(ForgotPassword forgotPassword) {
+		Customer customer = getCustomerByUsername(forgotPassword.getUsername());
+		
+		Session session = currentSession();
+		
+		customer.setPassword(passwordEncoder.encode(forgotPassword.getPassword()));
+		
+		customer.getBillingAddress().setCustomer(customer);
+		customer.getShippingAddress().setCustomer(customer);
+		
+		session.saveOrUpdate(customer);
+		session.saveOrUpdate(customer.getBillingAddress());
+		session.saveOrUpdate(customer.getShippingAddress());
+		
+		Users newUser = usersService.getUsersByUsername(customer.getUsername());
+		newUser.setPassword(customer.getPassword());
+		
+		session.saveOrUpdate(newUser);
+		
+		customer.getCart().setCustomer(customer);
+		
+		session.saveOrUpdate(customer);
+		
+		session.flush();
+	}
+
+	@Override
+	public void checkSecurityAnswer(ForgotPassword forgotPassword) {
+		String answer = forgotPassword.getAnswer();
+		Customer customer = getCustomerByUsername(forgotPassword.getUsername());
+		if(!answer.equals(customer.getAnswer())) {
+			throw new RuntimeException();
+		}
 	}
 
 }

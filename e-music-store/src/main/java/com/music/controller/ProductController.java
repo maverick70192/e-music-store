@@ -67,6 +67,9 @@ public class ProductController {
 				model.addAttribute("role", "ROLE_USER");
 				model.addAttribute("cartId", cartId);
 			}
+			else if(roles.contains("ROLE_ADMIN")) {
+				model.addAttribute("role", "ROLE_ADMIN");
+			}
 		}
 		
 		return "product";

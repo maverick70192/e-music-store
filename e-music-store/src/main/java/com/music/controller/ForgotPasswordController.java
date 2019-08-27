@@ -11,7 +11,9 @@ import com.music.model.ForgotPassword;
 public class ForgotPasswordController {
 	@RequestMapping(value = "/forgot-password", method = RequestMethod.GET)
 	public String showForgotPasswordPage(Model model) {
-		model.addAttribute(new ForgotPassword());
-		return "forgot_password";
+		ForgotPassword forgotPassword = new ForgotPassword();
+		
+		model.addAttribute(forgotPassword);
+		return "redirect:/recovery";
 	}
 }

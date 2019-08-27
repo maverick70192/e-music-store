@@ -124,4 +124,36 @@
 		<put-attribute name="body" value="/WEB-INF/flows/checkout/thank_customer.jsp" />
 	</definition>
 	
+	<!-- RECOVERY MODULE -->
+	
+	<definition name="recovery_cancelled" extends="base">
+		<put-attribute name="title" value="Password Recovery" />
+		<put-attribute name="body" value="/WEB-INF/flows/recovery/recovery_cancelled.jsp" />
+	</definition>
+	
+	<definition name="collect_primary_info" extends="base">
+		<put-attribute name="title" value="Password Recovery" />
+		<put-attribute name="body" value="/WEB-INF/flows/recovery/collect_primary_info.jsp" />
+	</definition>
+	
+	<definition name="collect_secondary_info" extends="base">
+		<put-attribute name="title" value="Password Recovery" />
+		<put-attribute name="body" value="/WEB-INF/flows/recovery/collect_secondary_info.jsp" />
+	</definition>
+	
+	<definition name="invalid_customer_warning" extends="base">
+		<put-attribute name="title" value="Password Recovery" />
+		<put-attribute name="body" value="/WEB-INF/flows/recovery/invalid_customer_warning.jsp" />
+	</definition>
+	
+	<definition name="set_new_password" extends="base">
+		<put-attribute name="title" value="Password Recovery" />
+		<put-attribute name="body" value="/WEB-INF/flows/recovery/set_new_password.jsp" />
+	</definition>
+	
+	<definition name="recovery_done" extends="base">
+		<put-attribute name="title" value="Password Recovery" />
+		<put-attribute name="body" value="/WEB-INF/flows/recovery/recovery_done.jsp" />
+	</definition>
+	
 </tiles-definitions>

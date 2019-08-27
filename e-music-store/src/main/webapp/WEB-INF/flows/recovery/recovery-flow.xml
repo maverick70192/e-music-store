@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+                          
+	<var name="forgotPassword" class="com.music.model.ForgotPassword"/>
+	
+	<view-state id="collectPrimaryInfo" view="collect_primary_info" model="forgotPassword">
+		<transition on="primaryInfoCollected" to="processPrimaryInfo" />
+	</view-state>
+	
+	<action-state id="processPrimaryInfo">
+		<evaluate expression="customerRepositoryImpl.customerExist(forgotPassword)" />
+		<transition on-exception="java.lang.RuntimeException" to="invalid_customer_warning" />
+		<transition to="collectSecondaryInfo" />
+	</action-state>
+	
+	<view-state id="collectSecondaryInfo" view="collect_secondary_info" model="forgotPassword">
+		<transition on="secondaryInfoCollected" to="processSecondaryInfo" />
+	</view-state>
+	
+	<action-state id="processSecondaryInfo">
+		<evaluate expression="customerRepositoryImpl.checkSecurityAnswer(forgotPassword)" />
+		<transition on-exception="java.lang.RuntimeException" to="invalid_customer_warning" />
+		<transition to="setNewPassword" />
+	</action-state>
+	
+	<view-state id="setNewPassword" view="set_new_password" model="forgotPassword">
+		<transition on="newPasswordSet" to="processRecovery" />
+	</view-state>
+	
+	<action-state id="processRecovery">
+		<evaluate expression="customerRepositoryImpl.changePassword(forgotPassword)" />
+		<transition to="recoveryDone" />
+	</action-state>
+	
+	<view-state id="recoveryDone" view="recovery_done" model="forgotPassword">
+		<transition to="endState" />
+	</view-state>
+	
+	<end-state id="endState" />
+	
+	<view-state id="invalidCustomerWarning" view="invalid_customer_warning">
+		<transition to="endState" />
+	</view-state>
+	
+	<end-state id="cancelRecovery" view="recovery_cancelled" />
+	
+	<global-transitions>
+		<transition on="cancel" to="cancelRecovery" />
+	</global-transitions>
+</flow>

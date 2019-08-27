@@ -47,6 +47,21 @@
 				<sf:password path="password" cssErrorClass="error" class="form-control" />
 			</div>
 			
+			<div class="form-group">
+				<sf:label path="securityQuestion" cssErrorClass="error">SecurityQuestion:</sf:label>
+				<sf:select path="securityQuestion" cssErrorClass="error" class="form-control">
+					<sf:option value="Your favourite sport?">Your favourite sport?</sf:option>
+					<sf:option value="Your first school name?">Your first school name?</sf:option>
+					<sf:option value="Your father middle name?">Your father middle name?</sf:option>
+					<sf:option value="Your fovourite character name?">Your fovourite character name?</sf:option>
+				</sf:select>
+			</div>
+			
+			<div class="form-group">
+				<sf:label path="answer" cssErrorClass="error">Answer:</sf:label>
+				<sf:input path="answer" cssErrorClass="error" class="form-control" />
+			</div>
+			
 			<br/>
 			<h2>Billing Address:</h2>
 			<br/>

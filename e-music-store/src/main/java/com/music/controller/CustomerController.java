@@ -16,10 +16,10 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public String showCustomerHomePage() {
-		return "customer_home";
-	}
+//	@RequestMapping(method = RequestMethod.GET)
+//	public String showCustomerHomePage() {
+//		return "customer_home";
+//	}
 	
 //	@RequestMapping(value="/{customerId}", method = RequestMethod.GET)
 //	public String showCustomerProfileByCustomerId(@PathVariable Long customerId, Model model) {

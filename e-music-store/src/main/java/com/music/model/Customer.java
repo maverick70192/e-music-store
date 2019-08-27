@@ -28,6 +28,10 @@ public class Customer implements Serializable {
 	@NotEmpty(message = "The customer email must not be null.")
 	@EmailExist(message = "This email already exist.")
 	private String email;
+
+	private String securityQuestion;
+	@NotEmpty(message="The security answer must not be null.")
+	private String answer;
 	
 	private String phone;
 	
@@ -75,6 +79,23 @@ public class Customer implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+
+	public String getSecurityQuestion() {
+		return securityQuestion;
+	}
+
+	public void setSecurityQuestion(String securityQuestion) {
+		this.securityQuestion = securityQuestion;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
 	}
 
 	public String getPhone() {

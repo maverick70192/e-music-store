@@ -48,7 +48,6 @@
 						<s:url value="/customer/cart/{cartId}" var="cartUrl">
 							<s:param name="cartId" value="${ cartId }" />
 						</s:url>
-						
 						<c:if test="${ role == null }">
 							&nbsp; <a class="btn btn-warning" href="<s:url value="/login"/>">login to add to cart!</a>
 						</c:if>
